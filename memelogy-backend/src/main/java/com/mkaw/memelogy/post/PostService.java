@@ -1,6 +1,7 @@
 package com.mkaw.memelogy.post;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class PostService {
@@ -13,7 +14,8 @@ public class PostService {
         this.postMapper = postMapper;
     }
 
-    public PostDto findById(Long id) {
+    @Transactional(readOnly = true)
+    public PostDto findById(long id) {
         Post post = postRepository.getOne(id);
         return postMapper.postToPostDto(post);
     }

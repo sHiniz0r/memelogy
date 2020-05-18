@@ -1,33 +1,12 @@
 package com.mkaw.memelogy.user;
 
-public class UserDto {
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import org.immutables.value.Value;
 
-    private String username;
-    private String email;
-
-    private byte[] avatar;
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public byte[] getAvatar() {
-        return avatar;
-    }
-
-    public void setAvatar(byte[] avatar) {
-        this.avatar = avatar;
-    }
+@Value.Immutable
+@JsonDeserialize(builder = ImmutableUserDto.Builder.class)
+public interface UserDto {
+    String username();
+    String email();
+    byte[] avatar();
 }

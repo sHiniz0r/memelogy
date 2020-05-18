@@ -1,6 +1,5 @@
 package com.mkaw.memelogy.comment;
 
-import com.mkaw.memelogy.post.Post;
 import com.mkaw.memelogy.user.User;
 
 import javax.persistence.*;
@@ -16,9 +15,8 @@ public class Comment {
     @ManyToOne(fetch = FetchType.LAZY)
     private User author;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "post_id")
-    private Post post;
+    @Column(name = "post_id")
+    private Long postId;
 
     private String content;
 
@@ -27,9 +25,9 @@ public class Comment {
     protected Comment() {
     }
 
-    public Comment(User author, Post post, String content) {
+    public Comment(User author, Long postId, String content) {
         this.author = author;
-        this.post = post;
+        this.postId = postId;
         this.content = content;
         this.datePosted = LocalDateTime.now();
     }
@@ -42,8 +40,8 @@ public class Comment {
         return author;
     }
 
-    public Post getPost() {
-        return post;
+    public Long getPostId() {
+        return postId;
     }
 
     public String getContent() {

@@ -33,8 +33,8 @@ public class LoadDatabase {
             postRepository.save(anotherPost);
             postRepository.save(new Post(siedlecky, null, 0L, 0L));
 
-            commentRepository.save(new Comment(krzywans, post, "Awesome stuff"));
-            commentRepository.save(new Comment(siedlecky, anotherPost, "Oh, really?"));
+            commentRepository.save(new Comment(krzywans, post.getId(), "Awesome stuff"));
+            commentRepository.save(new Comment(siedlecky, anotherPost.getId(), "Oh, really?"));
         };
     }
 }

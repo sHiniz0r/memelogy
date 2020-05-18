@@ -1,6 +1,7 @@
 package com.mkaw.memelogy.user;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class UserService {
@@ -13,6 +14,7 @@ public class UserService {
         this.userMapper = userMapper;
     }
 
+    @Transactional(readOnly = true)
     public UserDto findUserById(Long id) {
         User one = userRepository.getOne(id);
         return userMapper.userToUserDto(one);
